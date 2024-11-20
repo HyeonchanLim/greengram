@@ -1,21 +1,31 @@
+# custom property (절대경로 Absolute Path)
+file:
+  directory: D:/2024-02/download/greengram_ver1
+
+# mybatis setting
 mybatis:
   mapper-locations: xml/**/*.xml
+# url 주소에 /api 추가로 만듦
+# server:
+    #  servlet:
+  #   context-path: /api
 
 spring:
-   application:
-     name: GreenGramVer1
+  # DB setting
+  datasource:
+    url: jdbc:mariadb://localhost:3306/greengram_ver1
+    username: root
+    password: green502
 
-   datasource:
-     url: jdbc:mariadb://localhost/greengram_ver1
-     username: root
-     password: green502
+  servlet:
+    multipart:
+      max-file-size: 10MB
 
 springdoc:
-  api-docs:
-    version: openapi_3_1
   swagger-ui:
-    default-model-expand-depth: 2
-    default-models-expand-depth: -1
+    default-model-expand-depth: 10
     display-request-duration: true
     operations-sorter: method
     path: /swagger
+  cache:
+    disabled: true

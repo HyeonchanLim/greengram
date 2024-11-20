@@ -7,12 +7,13 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class paging {
+public class Paging {
     @Schema(example = "1", description = "Selected Page")
     private int page;
     @Schema(example = "30", description = "item count per page")
     private int size;
     @JsonIgnore
     private int startIdx;
+
 
 }
