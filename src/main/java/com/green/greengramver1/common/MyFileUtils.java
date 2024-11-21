@@ -45,6 +45,9 @@ public class MyFileUtils {
     }
     public String makeRandomFileName(MultipartFile file) {
         return makeRandomFileName(file.getOriginalFilename());
+        // 확장자 가져옴 위에서 getext 메소드에서 작업 -> 그다음 추출되었는 확장자명을 가져와서 작업
+        // getOriginalFilename 원래 등록한 파일의 이름
+
     }
     //파일을 원하는 경로에 저장
     public void transferTo(MultipartFile mf, String path) throws IOException {

@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @Setter
-public class UserInsReq {
+public class UserSignUpReq {
     @JsonIgnore
     private long userId;
     @Schema(description = "유저 아이디", example = "mic", requiredMode = Schema.RequiredMode.REQUIRED)

@@ -9,4 +9,10 @@
         , pic = #{pic}
         , nick_name = #{nickName}
     </insert>
+
+    <select id="selUserForSignIn">
+        SELECT user_id AS userId , nick_name AS nickName , pic , upw
+        FROM user
+        WHERE uid = #{uid}
+    </select>
 </mapper>
