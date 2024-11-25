@@ -11,7 +11,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.nio.file.Path;
 @Component
-@Configuration // 싱글톤 (객체 주소값 돌려 씀) , 싱글톤이면 shallow copy ,
+@Configuration // 싱글톤 (객체 주소값 돌려 씀) , 싱글톤이면 shallow copy
+// 메서드에 @bean 을 붙여주지 않으면 bean 등록을 하지 않는다 , 한번만 인스턴스화
+// 다만 싱글톤으로 관리되며 내부 메서드 호출 시 proxy 를 통해 객체(싱글톤)를 공유하게 됩니다.
 public class WebMvcConfiguration implements WebMvcConfigurer {
     private final String uploadPath;
 
