@@ -18,7 +18,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class UserService {
     private final UserMapper mapper;
-    private final MyFileUtils myFileUtils;
+    private final MyFileUtils myFileUtils; // di받아서 사용 가능
 
     public int postSignUp(MultipartFile pic, UserSignUpReq p) {
         //프로필 이미지 파일 처리
@@ -45,11 +45,14 @@ public class UserService {
         long userId = p.getUserId(); // user 를 insert 후에 얻을 수 있다.
         // 위에 mapper.insUser(p); 돌아온 pk 값을 여기서 참고
         String middlePath = String.format("user/%d", userId);
+        // user/%d 회원가입 -> pk값이 10 번이다 -> user/10 폴더 생성
         // middilepath 가 usrid 에 pic 등록  ${user}/${userId} 여기 부분
         // 이게 xml 에서 작성한 useGeneratedKeys="true" keyProperty="userId" 이 부분
         myFileUtils.makeFolders(middlePath);
         log.info("middlePath: {}", middlePath);
         String filePath = String.format("%s/%s", middlePath, savedPicName);
+        // savedPicName 이 위에 if 로 null 값을 체크했음
+        // 그러므로 pic 은 null 이 아니라는거고 name 도 null 이 아니라는거임
 
         try {
             myFileUtils.transferTo(pic , filePath);
@@ -58,7 +61,11 @@ public class UserService {
         }
 
         return result;
-        // signup 으로 리턴
+
+        /*
+        signup 으로 UserSignUpReq 클래스 멤버필드로 데이터를 p 가 보내줌 그러면 클래스의 멤버필드에 pk 값 부터
+        데이터들이 보내지는데 이 데이터를 SignIn 이 가져와서 처리하는 진행 순서
+         */
     }
     public UserSignInRes postSignIn(UserSignInReq p){
         UserSignInRes res = mapper.selUserForSignIn(p);

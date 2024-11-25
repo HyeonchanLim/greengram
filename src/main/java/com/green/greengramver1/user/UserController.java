@@ -23,7 +23,12 @@ public class UserController {
         파일(MultipartFile) + Data
         파일 업로드시에는 RequestBody를 사용할 수 없음.
         RequestPart애노테이션 사용해야 함
+        (required = true) null 값 허용 여부 조건부 - true 면 무조건 필수적으로 받아야 함
+        false 라면 안받으면 default 값을 자동으로 넣어주고 null값도 허용해줌
+        DefaultValue 사용 -> required 작성 안하면 false 가 기본값으로 들어오고
+        DefaultValue , required 없으면 true 가 기본값으로 설정
      */
+    // MultiPartFile 은 인터페이스 -> 이거를 밑에 파라미터로 받으면서 인터페이스를 구현함
     @PostMapping("sign-up")
     @Operation(summary = "회원 가입")
     public ResultResponse<Integer> signUp(@RequestPart UserSignUpReq p

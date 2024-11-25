@@ -23,11 +23,17 @@ public class MyFileUtils {
         this.uploadPath = uploadPath;
     }
     // path = "ddd/aaa"
-    // D:/2024-02/download/greengram_ver1/ddd/aaa
+    // D:/2024-02/download/greengram_ver1/ddd/aaa : 뒤에 . ??? 확장자면이 없으면 폴더명
     //디렉토리 생성
     public String makeFolders(String path) {
-        File file = new File(uploadPath, path);
-        file.mkdirs();
+        File file = new File(uploadPath, path); // 생성자 호출
+//        File file = new File(uploadPath + "/" + path);
+//        인자 1개 - path 만 보냄 , 이렇게 되면 인자 하나만 받는 생성자도 있는걸 알 수 있음
+//        static 아님 -> 객체화하고 주소값.(file.)으로 호출했기 때문에
+//        메소드명은 exists , 파라미터는 없음 -> 호출 때 인자를 보내지 않았기 때문
+        if(!file.exists()) { // exists -> 파일명 체크 / 리턴타입 boolean 타입 , void 면 불가능 why? - return - boolean 이라서
+            file.mkdirs();
+        }
         return file.getAbsolutePath();
     }
     //파일명에서 확장자 추출
@@ -42,11 +48,14 @@ public class MyFileUtils {
     //랜덤파일명 + 확장자 생성하여 리턴
     public String makeRandomFileName(String originalFileName) {
         return makeRandomFileName() + getExt(originalFileName);
+        // return , +  조합으로 리턴 메소드인지 구분 가능
     }
     public String makeRandomFileName(MultipartFile file) {
         return makeRandomFileName(file.getOriginalFilename());
+        // (file.getOriginalFilename()) -> () 안에 리턴하는 값인 데이터가 있어서 리턴 메소드다
         // 확장자 가져옴 위에서 getext 메소드에서 작업 -> 그다음 추출되었는 확장자명을 가져와서 작업
         // getOriginalFilename 원래 등록한 파일의 이름
+
 
     }
     //파일을 원하는 경로에 저장

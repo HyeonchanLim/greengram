@@ -29,6 +29,6 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     public void configurePathMatch(PathMatchConfigurer configurer){
 
         configurer.addPathPrefix("api", HandlerTypePredicate.forAnnotation(RestController.class));
-        // addPathPrefix -> RestController 의 모든 URL 에 "/api" prefix를 설정
+        // RestController 애노테이션이 있는 클래스에 api 를 prefix 해준다
     }
 }
