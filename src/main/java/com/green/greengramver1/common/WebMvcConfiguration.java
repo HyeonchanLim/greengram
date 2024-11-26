@@ -23,7 +23,14 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
-        registry.addResourceHandler("/pic/**").addResourceLocations("file:" + uploadPath + "/");
+        registry.addResourceHandler("/pic/**")
+                // 클라이언트가 브라우저 또는 api로 요청을 보낼 때 경로 하위에 있는 모든 요청을 처리하도록 지정
+                // ex) image1.jpg
+                .addResourceLocations("file:" + uploadPath + "/");
+                // 요청된 경로를 처리할 때 참조할 실제 파일 경로 지정
+                // uploadpath 는 value 로 주입받은 경로 , 정적 리소스가 실제로 저장된 디렉토리를 가르킴
+                // value - home/upload
+                // home/upload/image1.jpg
     }
 
     @Override
@@ -34,3 +41,12 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         // RestController 애노테이션이 있는 클래스에 api 를 prefix 해준다
     }
 }
+/*
+여기서 swagger 랑 연결하는 부분을 작성하였고 webmvc 인터페이스를 상속받아서 메소드를 오버라이드 하였다.
+그리고 1단계로 경로를 만들어주기 위해서 @value 를 작성하였고 uploadpath 파라미터 받아온걸로 주소를 넘겼다.
+ 그다음 registry 를 통해 받아온 데이터에서 handler 로 사진은 /pic/ ** 를 작성하였는데
+ 사진은 pic 다음 ** 아무꺼나 라는 조건부를 작성 + location 은 file: uploadpath / 이렇게 인데
+ 이거는 현재 작업한 내용 기준 localhost 가 file 에 들어가고 uploadpath 가 8080 에 해당하는 부분이다
+  그다음 restcontroller 애노테이션이 있는 클래스에는 api 를 앞에 prefix 해주는건데 / 는 앞에 자동으로
+   추가해준다
+ */

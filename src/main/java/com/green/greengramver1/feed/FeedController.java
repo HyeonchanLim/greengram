@@ -32,11 +32,13 @@ public class FeedController {
                 .resultData(res)
                 .build();
     }
-
     /*
     querystring - url 에 key value 값을 포함한다 .
+    key=value&key2=value2 같이 url 작성시 빈칸 절대 금지! why? 빈칸도 데이터로 인식
     html 은 무조건 get 방식
     하이퍼텍스트 : 원하는 문서로 즉시 접근할 수 있는 텍스트(html) 이다.
+    @ParameterObject , @RequestParam 처럼 form 만들어줌
+    데이터를 받는 방식 2가지 - 쿼리스트링 or body(form data 이고 json이랑 다름) 데이터
      */
     @GetMapping
     public ResultResponse<List<FeedGetRes>> getFeedList(@ParameterObject @ModelAttribute FeedGetReq p){

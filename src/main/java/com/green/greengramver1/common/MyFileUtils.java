@@ -27,11 +27,13 @@ public class MyFileUtils {
     //디렉토리 생성
     public String makeFolders(String path) {
         File file = new File(uploadPath, path); // 생성자 호출
+        // file ( 부모 위치 경로 , 자식 위치 경로) , / 는 자동 생성
 //        File file = new File(uploadPath + "/" + path);
 //        인자 1개 - path 만 보냄 , 이렇게 되면 인자 하나만 받는 생성자도 있는걸 알 수 있음
 //        static 아님 -> 객체화하고 주소값.(file.)으로 호출했기 때문에
 //        메소드명은 exists , 파라미터는 없음 -> 호출 때 인자를 보내지 않았기 때문
         if(!file.exists()) { // exists -> 파일명 체크 / 리턴타입 boolean 타입 , void 면 불가능 why? - return - boolean 이라서
+            // exists 로 빈 파일인지 체크 -> 아니면 file 생성
             file.mkdirs();
         }
         return file.getAbsolutePath();
@@ -59,6 +61,8 @@ public class MyFileUtils {
 
     }
     //파일을 원하는 경로에 저장
+    // 여기서 throws 쓰는 이유는 예외 처리를 내부에서 하기 보다는 외부에서 하는게 좋다
+    // 그러면 가독성도 올라가고 유지보수성이 올라간다 + 호출자마다 예외를 처리하는 방식이 다를 수 있다.
     public void transferTo(MultipartFile mf, String path) throws IOException {
         File file = new File(uploadPath, path);
         mf.transferTo(file);

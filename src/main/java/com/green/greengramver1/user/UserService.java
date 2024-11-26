@@ -25,7 +25,7 @@ public class UserService {
         //String savedPicName = myFileUtils.makeRandomFileName(pic.getOriginalFilename());
         // 위와 같은 결과가 나왔으면 좋겠다.
         String savedPicName = (pic != null ? myFileUtils.makeRandomFileName(pic) : null);
-        // makeRandomFileName(pic) pic 은 multiparttfile 메소드를 실행
+        // makeRandomFileName(pic) pic 은 multipartfile 메소드를 실행
         // 여기서 original 이름 + 확장자
 
         String hashedPassword = BCrypt.hashpw(p.getUpw(),BCrypt.gensalt());

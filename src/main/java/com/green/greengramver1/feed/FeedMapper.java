@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface FeedMapper {
     int insFeed(FeedPostReq p);
-    List<FeedGetRes> selFeedList(FeedGetReq p);
     int selUserForSignIn(FeedPicDto p);
+    List<FeedGetRes> selFeedList(FeedGetReq p);
     List<String> selFeedPicList(long p);
 }

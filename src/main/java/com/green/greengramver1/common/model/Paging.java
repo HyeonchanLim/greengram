@@ -7,6 +7,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
+// 이뮤터블 방식 -> setter x & final 멤버 & private
 public class Paging {
     // final static 은 JsonIgnore 없어도 데이터가 안들어감
     private final static int DEFAULT_PAGE_SIZE = 20;
@@ -24,6 +25,4 @@ public class Paging {
         this.startIdx = (this.page-1)*this.size;
     }
     // @Setter 를 쓰면 생성자 or setter 를 쓰는데 setter 가 우선순위라 생성자 데이터는 제외 당함
-
-
 }
