@@ -31,6 +31,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                 // uploadpath 는 value 로 주입받은 경로 , 정적 리소스가 실제로 저장된 디렉토리를 가르킴
                 // value - home/upload
                 // home/upload/image1.jpg
+                // home/upload 부분을 /pic 가
     }
 
     @Override

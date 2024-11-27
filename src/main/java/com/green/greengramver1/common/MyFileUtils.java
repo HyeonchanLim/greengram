@@ -54,6 +54,7 @@ public class MyFileUtils {
     }
     public String makeRandomFileName(MultipartFile file) {
         return makeRandomFileName(file.getOriginalFilename());
+        // 원본 파일명을 가져와야만 해당 파일의 확장자를 추출 가능 ->
         // (file.getOriginalFilename()) -> () 안에 리턴하는 값인 데이터가 있어서 리턴 메소드다
         // 확장자 가져옴 위에서 getext 메소드에서 작업 -> 그다음 추출되었는 확장자명을 가져와서 작업
         // getOriginalFilename 원래 등록한 파일의 이름

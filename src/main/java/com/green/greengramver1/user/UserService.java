@@ -27,8 +27,8 @@ public class UserService {
         String savedPicName = (pic != null ? myFileUtils.makeRandomFileName(pic) : null);
         // makeRandomFileName(pic) pic 은 multipartfile 메소드를 실행
         // 여기서 original 이름 + 확장자
-
         String hashedPassword = BCrypt.hashpw(p.getUpw(),BCrypt.gensalt());
+        // hash 처리하는 과정 = upw + 암호화에 사용되는 고유값(소금값) salt
         log.info("hashedPassword: {}" , hashedPassword);
         p.setUpw(hashedPassword);
         p.setPic(savedPicName);
