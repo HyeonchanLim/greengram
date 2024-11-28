@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 public class FeedPicDto {
     // data transfer object
-
     @Schema(title = "피드 ID")
     private long feedId;
     @Schema(title = "사진")
